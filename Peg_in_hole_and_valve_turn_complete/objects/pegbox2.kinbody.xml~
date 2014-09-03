@@ -1,0 +1,15 @@
+<KinBody name="pegbox2">
+  <!--<RotationAxis>0 1 0 -105</RotationAxis>-->
+    <Body name = "pegbox" type="static">
+    <!--<Mass type="mimicgeom">
+        <total>0.5</total>
+    </Mass>-->
+    <Geom type="trimesh">
+        <Data>/home/archr/hubo_simulation/objects/pegbox.wrl</Data>
+        <Render>/home/archr/hubo_simulation/objects/pegbox.wrl</Render>
+        <diffuseColor>1.0 0.0 0.0</diffuseColor>
+      </Geom>      
+    </Body>
+</KinBody>
+
+

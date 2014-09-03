@@ -1,0 +1,8 @@
+Collin Ward for coding the Inverse Kinematics:
+https://github.com/cward13 
+
+Michael Overstreet for the robot design: (I hope this is the proper github page)
+https://github.com/FireGoblin
+
+Daniel Lofaro for the inspiration:
+https://github.com/thedancomplex

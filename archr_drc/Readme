@@ -1,0 +1,2 @@
+To load specific environment file: Modify virtualhubo.py file (in etc/hubo-ach) with sudo priveleges and text editor e.g. using sudo or gksudo geddit to open the file
+

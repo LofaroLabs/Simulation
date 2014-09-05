@@ -1,0 +1,284 @@
+#!/usr/bin/env python
+# /* -*-  indent-tabs-mode:t; tab-width: 8; c-basic-offset: 8  -*- */
+# /*
+# Copyright (c) 2013, Daniel M. Lofaro
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the author nor the names of its contributors may
+#       be used to endorse or promote products derived from this software
+#       without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Based on: https://github.com/thedancomplex/pydynamixel
+# */
+import sys
+sys.path.append('/home/archr/hubo_simulation/files/dynamixel')
+import os
+import dynamixel
+import serial_stream
+import time
+import random
+import sys
+import subprocess
+import optparse
+import yaml
+import dynamixel_network
+import numpy as np
+
+#import baxter stuff
+import argparse
+
+import rospy
+
+import baxter_interface
+import baxter_external_devices
+
+from baxter_interface import CHECK_VERSION
+
+#define dynamixel functions
+def rad2dyn(rad):
+    return np.int(np.floor( (rad + np.pi)/(2.0 * np.pi) * 4096 ))
+
+def dyn2rad(en):
+    return ((en*2.0*np.pi)/1024) - np.pi
+
+#define baxter functions
+def map_keyboard():
+    left = baxter_interface.Limb('left')
+    right = baxter_interface.Limb('right')
+    grip_left = baxter_interface.Gripper('left', CHECK_VERSION)
+    grip_right = baxter_interface.Gripper('right', CHECK_VERSION)
+    lj = left.joint_names()
+    rj = right.joint_names()
+
+    def set_j(limb, joint_name, delta):
+        current_position = limb.joint_angle(joint_name)
+        joint_command = {joint_name: current_position + delta}
+        limb.set_joint_positions(joint_command)
+
+    bindings = {
+    #   key: (function, args, description)
+        '9': (set_j, [left, lj[0], 0.1], "left_s0 increase"),
+        '6': (set_j, [left, lj[0], -0.1], "left_s0 decrease"),
+        '8': (set_j, [left, lj[1], 0.1], "left_s1 increase"),
+        '7': (set_j, [left, lj[1], -0.1], "left_s1 decrease"),
+        'o': (set_j, [left, lj[2], 0.1], "left_e0 increase"),
+        'y': (set_j, [left, lj[2], -0.1], "left_e0 decrease"),
+        'i': (set_j, [left, lj[3], 0.1], "left_e1 increase"),
+        'u': (set_j, [left, lj[3], -0.1], "left_e1 decrease"),
+        'l': (set_j, [left, lj[4], 0.1], "left_w0 increase"),
+        'h': (set_j, [left, lj[4], -0.1], "left_w0 decrease"),
+        'k': (set_j, [left, lj[5], 0.1], "left_w1 increase"),
+        'j': (set_j, [left, lj[5], -0.1], "left_w1 decrease"),
+        '.': (set_j, [left, lj[6], 0.1], "left_w2 increase"),
+        'n': (set_j, [left, lj[6], -0.1], "left_w2 decrease"),
+        ',': (grip_left.close, [], "left: gripper close"),
+        'm': (grip_left.open, [], "left: gripper open"),
+        '/': (grip_left.calibrate, [], "left: gripper calibrate"),
+
+        '4': (set_j, [right, rj[0], 0.1], "right_s0 increase"),
+        '1': (set_j, [right, rj[0], -0.1], "right_s0 decrease"),
+        '3': (set_j, [right, rj[1], 0.1], "right_s1 increase"),
+        '2': (set_j, [right, rj[1], -0.1], "right_s1 decrease"),
+        'r': (set_j, [right, rj[2], 0.1], "right_e0 increase"),
+        'q': (set_j, [right, rj[2], -0.1], "right_e0 decrease"),
+        'e': (set_j, [right, rj[3], 0.1], "right_e1 increase"),
+        'w': (set_j, [right, rj[3], -0.1], "right_e1 decrease"),
+        'f': (set_j, [right, rj[4], 0.1], "right_w0 increase"),
+        'a': (set_j, [right, rj[4], -0.1], "right_w0 decrease"),
+        'd': (set_j, [right, rj[5], 0.1], "right_w1 increase"),
+        's': (set_j, [right, rj[5], -0.1], "right_w1 decrease"),
+        'v': (set_j, [right, rj[6], 0.1], "right_w2 increase"),
+        'z': (set_j, [right, rj[6], -0.1], "right_w2 decrease"),
+        'c': (grip_right.close, [], "right: gripper close"),
+        'x': (grip_right.open, [], "right: gripper open"),
+        'b': (grip_right.calibrate, [], "right: gripper calibrate"),
+     }
+    done = False
+    print("Controlling joints. Press ? for help, Esc to quit.")
+    while not done and not rospy.is_shutdown():
+        c = baxter_external_devices.getch()
+        if c:
+            #catch Esc or ctrl-c
+            if c in ['\x1b', '\x03']:
+                done = True
+                rospy.signal_shutdown("Example finished.")
+            elif c in bindings:
+                cmd = bindings[c]
+                #expand binding to something like "set_j(right, 's0', 0.1)"
+                cmd[0](*cmd[1])
+                print("command: %s" % (cmd[2],))
+            else:
+                print("key bindings: ")
+                print("  Esc: Quit")
+                print("  ?: Help")
+                for key, val in sorted(bindings.items(),
+                                       key=lambda x: x[1][2]):
+                    print("  %s: %s" % (key, val[2]))
+
+
+def main(settings):
+    portName = settings['port']
+    baudRate = settings['baudRate']
+    highestServoId = settings['highestServoId']
+
+    # Establish a serial connection to the dynamixel network.
+    # This usually requires a USB2Dynamixel
+    serial = serial_stream.SerialStream(port=portName, baudrate=baudRate, timeout=1)
+    net = dynamixel_network.DynamixelNetwork(serial)
+    previousServoValue=0;    
+
+    # Ping the range of servos that are attached
+    print "Scanning for Dynamixels..."
+    net.scan(1, highestServoId)
+    
+    myActuators = []
+    for dyn in net.get_dynamixels():
+        print dyn.id
+        myActuators.append(net[dyn.id])
+
+    if not myActuators:
+      print 'No Dynamixels Found!'
+      sys.exit(0)
+    else:
+      print "...Done"
+    
+    for actuator in myActuators:
+        actuator.moving_speed = 1023
+        actuator.synchronized = True
+        actuator.torque_enable = False
+
+    #send commands to robot
+    while True:
+        actuator.read_all()
+        time.sleep(0.01)
+	for actuator in myActuators:
+            if ( actuator.id == 1):
+                #myActuators[0]._set_goal_position(actuator.current_position)
+                print "RS0 radian value = %f" %dyn2rad(actuator.current_position) 
+            if ( actuator.id == 2):
+                print "RS1 radian value = %f" %dyn2rad(actuator.current_position)
+
+            if ( actuator.id == 3):
+
+                print "RE0 radian value = %f" %dyn2rad(actuator.current_position) 
+
+            if ( actuator.id == 4):
+
+                print "RE1 radian value = %f" %dyn2rad(actuator.current_position)
+
+            if ( actuator.id == 5):
+                print "RW0 radian value = %f" %dyn2rad(actuator.current_position)
+            if ( actuator.id == 6):
+                print "RW1 radian value = %f" %dyn2rad(actuator.current_position)
+	    net.synchronize()
+
+
+def validateInput(userInput, rangeMin, rangeMax):
+    '''
+    Returns valid user input or None
+    '''
+    try:
+        inTest = int(userInput)
+        if inTest < rangeMin or inTest > rangeMax:
+            print "ERROR: Value out of range [" + str(rangeMin) + '-' + str(rangeMax) + "]"
+            return None
+    except ValueError:
+        print("ERROR: Please enter an integer")
+        return None
+    
+    return inTest
+
+if __name__ == '__main__':
+    
+    parser = optparse.OptionParser()
+    parser.add_option("-c", "--clean",
+                      action="store_true", dest="clean", default=False,
+                      help="Ignore the settings.yaml file if it exists and \
+                      prompt for new settings.")
+    
+    (options, args) = parser.parse_args()
+    
+    # Look for a settings.yaml file
+    settingsFile = 'settings.yaml'
+    if not options.clean and os.path.exists(settingsFile):
+        with open(settingsFile, 'r') as fh:
+            settings = yaml.load(fh)
+    # If we were asked to bypass, or don't have settings
+    else:
+        settings = {}
+        if os.name == "posix":
+            portPrompt = "Which port corresponds to your USB2Dynamixel? \n"
+            # Get a list of ports that mention USB
+            try:
+                possiblePorts = subprocess.check_output('ls /dev/ | grep -i usb',
+                                                        shell=True).split()
+                possiblePorts = ['/dev/' + port for port in possiblePorts]
+            except subprocess.CalledProcessError:
+                sys.exit("USB2Dynamixel not found. Please connect one.")
+                
+            counter = 1
+            portCount = len(possiblePorts)
+            for port in possiblePorts:
+                portPrompt += "\t" + str(counter) + " - " + port + "\n"
+                counter += 1
+            portPrompt += "Enter Choice: "
+            portChoice = None
+            while not portChoice:                
+                portTest = raw_input(portPrompt)
+                portTest = validateInput(portTest, 1, portCount)
+                if portTest:
+                    portChoice = possiblePorts[portTest - 1]
+
+        else:
+            portPrompt = "Please enter the port name to which the USB2Dynamixel is connected: "
+            portChoice = raw_input(portPrompt)
+    
+        settings['port'] = portChoice
+        
+        # Baud rate
+        baudRate = None
+        while not baudRate:
+            brTest = raw_input("Enter baud rate [Default: 1000000 bps]:")
+            if not brTest:
+                baudRate = 1000000
+            else:
+                baudRate = validateInput(brTest, 9600, 1000000)
+                    
+        settings['baudRate'] = baudRate
+        
+        # Servo ID
+        highestServoId = None
+        while not highestServoId:
+            hsiTest = raw_input("Please enter the highest ID of the connected servos: ")
+            highestServoId = validateInput(hsiTest, 1, 255)
+        
+        settings['highestServoId'] = highestServoId
+        
+        # Save the output settings to a yaml file
+        with open(settingsFile, 'w') as fh:
+            yaml.dump(settings, fh)
+            print("Your settings have been saved to 'settings.yaml'. \nTo " +
+                   "change them in the future either edit that file or run " +
+                   "this example with -c.")
+    
+    main(settings)
+
+

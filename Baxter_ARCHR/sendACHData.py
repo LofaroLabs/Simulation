@@ -28,6 +28,7 @@
 #
 # Based on: https://github.com/thedancomplex/pydynamixel
 # */
+
 import sys
 sys.path.append('/home/archr/hubo_simulation/files/dynamixel')
 import os
@@ -42,61 +43,52 @@ import yaml
 import dynamixel_network
 import numpy as np
 
-#import baxter stuff
-import argparse
-import rospy
-import baxter_interface
-import baxter_external_devices
-from baxter_interface import CHECK_VERSION
 
-#define dynamixel functions
+# Hubo-ach stuff
+import hubo_ach as ha
+import ach
+from ctypes import *
+
+s0 = 0;
+s1 = 0;
+e0 = 0;
+e1 = 0;
+w0 = 0;
+w1 = 0;
+w2 = 0;
+s0List = [0, 0, 0, 0, 0];
+s1List = [0, 0, 0, 0, 0];
+e0List = [0, 0, 0, 0, 0];
+e1List = [0, 0, 0, 0, 0];
+w0List = [0, 0, 0, 0, 0];
+w1List = [0, 0, 0, 0, 0];
+w2List = [0, 0, 0, 0, 0];
+lf2List = [0, 0, 0, 0, 0];
+window = 10
+#Assigning from profile
+Ax = [1024,2047]
+
+# feed-forward will now be refered to as "state"
+#state = ha.HUBO_STATE()  #not used
+# feed-back will now be refered to as "ref"
+ref = ha.HUBO_REF()
+# Get the current feed-forward (state) 
+r = ach.Channel(ha.HUBO_CHAN_REF_NAME)
+[statuss, framesizes] = r.get(ref, wait=False, last=True)
+
+
 def rad2dyn(rad):
     return np.int(np.floor( (rad + np.pi)/(2.0 * np.pi) * 4096 ))
 
 def dyn2rad(en):
-    return ((en*2.0*np.pi)/1024) - np.pi
+    return ((en*2.0*np.pi)/Ax[0]) - np.pi
 
-#define baxter set joints function
-def set_j(limb, joint_name, position):
-    joint_command = {joint_name: position}
-    limb.set_joint_positions(joint_command)
-
-def main(settings):
-    
-    Flag = 0
-    done = False;
-
+def main(settings): 
     portName = settings['port']
     baudRate = settings['baudRate']
     highestServoId = settings['highestServoId']
 
-    #enable baxter and initialize node
-    print("Initializing node... ")
-    rospy.init_node("rsdk_joint_position_keyboard")
-    print("Getting robot state... ")
-    rs = baxter_interface.RobotEnable(CHECK_VERSION)
-    init_state = rs.state().enabled
-    print("Enabling robot... ")
-    rs.enable()
-
-
-    #baxter shutdown function
-    def clean_shutdown():
-        print("\nExiting example...")
-        if not init_state:
-            print("Disabling robot...")
-            rs.disable()
-        rospy.on_shutdown(clean_shutdown)
-    
-    #initialize baxter joints
-    left = baxter_interface.Limb('left')
-    right = baxter_interface.Limb('right')
-    grip_left = baxter_interface.Gripper('left', CHECK_VERSION)
-    grip_right = baxter_interface.Gripper('right', CHECK_VERSION)
-    lj = left.joint_names()
-    rj = right.joint_names()
-
-   # Establish a serial connection to the dynamixel network.
+    # Establish a serial connection to the dynamixel network.
     # This usually requires a USB2Dynamixel
     serial = serial_stream.SerialStream(port=portName, baudrate=baudRate, timeout=1)
     net = dynamixel_network.DynamixelNetwork(serial)
@@ -109,7 +101,7 @@ def main(settings):
     for dyn in net.get_dynamixels():
         print dyn.id
         myActuators.append(net[dyn.id])
-
+    
     if not myActuators:
       print 'No Dynamixels Found!'
       sys.exit(0)
@@ -117,33 +109,97 @@ def main(settings):
       print "...Done"
     
     for actuator in myActuators:
-        actuator.moving_speed = 1023
+        actuator.moving_speed = 80
         actuator.synchronized = True
-        actuator.torque_enable = False
-        
-    #send commands to robot
-    while True:
+        actuator.torque_enable = True
+        actuator.torque_limit = 0
+        actuator.max_torque = 0
+
+    #create initial data for averaging filter lists
+    while ( (len(s0List)<window) and (len(s1List)<window) ):
         actuator.read_all()
-        time.sleep(0.01)
-	for actuator in myActuators:
-            #left arm
-            if ( actuator.id == 1):
-                set_j(left, lj[0], dyn2rad(actuator.current_position));
-            if ( actuator.id == 2):
-                set_j(left, lj[1], -dyn2rad(actuator.current_position)); 
-            if ( actuator.id == 3):
-                set_j(left, lj[2], dyn2rad(actuator.current_position));  
-            if ( actuator.id == 4):
-                set_j(left, lj[3], -dyn2rad(actuator.current_position) + 3.14/2);  
-            if ( actuator.id == 5):
-                set_j(left, lj[4], dyn2rad(actuator.current_position)); 
-            if ( actuator.id == 6):
-                set_j(left, lj[5], -dyn2rad(actuator.current_position));  
-            if ( actuator.id == 7):
-                set_j(left, lj[6], dyn2rad(actuator.current_position)); 
-	    net.synchronize()
-                          
-            
+        for actuator in myActuators:
+                if ( actuator.id == 1):   
+                    s0List.append(dyn2rad(actuator.current_position));             
+                    s0 = np.mean(s0List);
+                if ( actuator.id == 2):     
+                    s1List.append(dyn2rad(actuator.current_position));             
+                    s1 = np.mean(s1List);                       
+                if ( actuator.id == 3): 
+                    e0List.append(dyn2rad(actuator.current_position));             
+                    e0 = np.mean(e0List);                                                 
+                if ( actuator.id == 4):   
+                    e1List.append(dyn2rad(actuator.current_position));             
+                    e1 = np.mean(e1List);                        
+                if ( actuator.id == 5):   
+                    w0List.append(dyn2rad(actuator.current_position));             
+                    w0 = np.mean(w0List);                         
+                if ( actuator.id == 6):      
+                    w1List.append(dyn2rad(actuator.current_position));             
+                    w1 = np.mean(w1List);                    
+                if ( actuator.id == 7):                
+                    w2List.append(dyn2rad(actuator.current_position));             
+                    w2 = np.mean(w2List);  
+                if ( actuator.id == 8):  
+                    lf2List.append(dyn2rad(actuator.current_position));             
+                    lf2 = np.mean(lf2List);                              
+        time.sleep(.01) #200 Hz refresh rate
+
+
+    #read data in real-time           
+    timeout = time.time() + 60*180   #Terminate 180 minutes from now
+    while True:    
+        actuator.read_all()
+    	for actuator in myActuators:
+                if ( actuator.id == 1):   
+                    s0List.append(dyn2rad(actuator.current_position));             
+                    s0List.pop(0);
+                    s0 = np.mean(s0List);
+                    ref.ref[ha.RSY] = s0;
+                if ( actuator.id == 2):     
+                    s1List.append(dyn2rad(actuator.current_position));             
+                    s1List.pop(0);
+                    s1 = np.mean(s1List);                       
+                    ref.ref[ha.RSP] = s1;
+                if ( actuator.id == 3): 
+                    e0List.append(dyn2rad(actuator.current_position));             
+                    e0List.pop(0);
+                    e0 = np.mean(e0List);                       
+                    ref.ref[ha.RSR] = e0;                           
+                if ( actuator.id == 4):   
+                    e1List.append(dyn2rad(actuator.current_position));             
+                    e1List.pop(0);
+                    e1 = np.mean(e1List);                        
+                    ref.ref[ha.REB] = e1 - 1.73; #offset of 1.73
+                if ( actuator.id == 5):   
+                    w0List.append(dyn2rad(actuator.current_position));             
+                    w0List.pop(0);
+                    w0 = np.mean(w0List);                         
+                    ref.ref[ha.RHY] = w0;
+                if ( actuator.id == 6):      
+                    w1List.append(dyn2rad(actuator.current_position));             
+                    w1List.pop(0);
+                    w1 = np.mean(w1List);                    
+                    ref.ref[ha.RHP] = w1;
+                if ( actuator.id == 7):                
+                    w2List.append(dyn2rad(actuator.current_position));             
+                    w2List.pop(0);
+                    w2 = np.mean(w2List);  
+                    ref.ref[ha.RWR] = w2;                
+                    #for debugging: print "[ID] radian value = %f" %dyn2rad(actuator.current_position) 
+                    print "s1, e0 radian value = %f %f %f %f" %(ref.ref[ha.RSY], ref.ref[ha.RSP], ref.ref[ha.RSR], ref.ref[ha.RWR])
+                if ( actuator.id == 8):              
+                    lf2List.append(dyn2rad(actuator.current_position));             
+                    lf2List.pop(0);
+                    lf2 = np.mean(lf2List);                              
+                    ref.ref[ha.RF2] = lf2 - 470;
+                    print "RF2 value = %f" %(ref.ref[ha.RF2])
+                r.put(ref)
+        time.sleep(.02) #200 Hz refresh rate
+        if time.time() > timeout:
+            print "Time out, hubo-ach channels closing."
+            break
+
 def validateInput(userInput, rangeMin, rangeMax):
     '''
     Returns valid user input or None
@@ -233,4 +289,3 @@ if __name__ == '__main__':
                    "this example with -c.")
     
     main(settings)
-

@@ -1,0 +1,15 @@
+<KinBody name="valvehead">
+  <!--<RotationAxis>0 1 0 -105</RotationAxis>-->
+    <Body name = "valve" type="dynamic">
+    <!--<Mass type="mimicgeom">
+        <total>0.5</total>
+    </Mass>-->
+    <Geom type="trimesh">
+        <Data>/home/archr/hubo_simulation/objects/valvehead.wrl</Data>
+        <Render>/home/archr/hubo_simulation/objects/valvehead.wrl</Render>
+        <diffuseColor>1 0 0</diffuseColor>
+      </Geom>      
+    </Body>
+</KinBody>
+
+

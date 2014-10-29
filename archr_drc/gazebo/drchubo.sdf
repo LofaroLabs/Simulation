@@ -1,0 +1,2695 @@
+<sdf version='1.4'>
+  <model name='drchubo-gazebo'>
+      <pose>0 0 1.18 0 -0 0</pose>
+    <link name='Body_Torso'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.00653576 2.64726e-05 -0.0481159 0 -0 0</pose>
+        <mass>12.0205</mass>
+        <inertia>
+          <ixx>0.139304</ixx>
+          <ixy>3.94987e-06</ixy>
+          <ixz>-0.00823717</ixz>
+          <iyy>0.103349</iyy>
+          <iyz>-5.51333e-06</iyz>
+          <izz>0.138503</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_Torso_collision'>
+        <pose>0 0 0 0 -0 0</pose> 
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_Torso_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_Torso_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_Torso_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <link name='Body_LSP'>
+      <pose>0 0.1435 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.0211206 0.0669652 0.000177534 0 -0 0</pose>
+        <mass>0.925752</mass>
+        <inertia>
+          <ixx>0.00168445</ixx>
+          <ixy>0.000340206</ixy>
+          <ixz>-6.3166e-06</ixz>
+          <iyy>0.00157378</iyy>
+          <iyz>-7.95927e-06</iyz>
+          <izz>0.0024477</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LSP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LSP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LSP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LSP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LSP' type='revolute'>
+      <child>Body_LSP</child>
+      <parent>Body_Torso</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-3.78432</lower>
+          <upper>3.7555</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LSR'>
+      <pose>0.033 0.2295 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.037565 -0.000356075 -0.0117791 0 -0 0</pose>
+        <mass>0.772866</mass>
+        <inertia>
+          <ixx>0.000583427</ixx>
+          <ixy>-8.46802e-07</ixy>
+          <ixz>-3.33711e-05</ixz>
+          <iyy>0.000797705</iyy>
+          <iyz>1.18579e-05</iyz>
+          <izz>0.000561295</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LSR_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LSR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LSR_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LSR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LSR' type='revolute'>
+      <child>Body_LSR</child>
+      <parent>Body_LSP</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-0.61814</lower>
+          <upper>3.15177</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LSY'>
+      <pose>0 0.2295 -0.027 0 -0 0</pose>
+      <inertial>
+        <pose>0.00919437 -0.00191434 -0.169537 0 -0 0</pose>
+        <mass>2.05732</mass>
+        <inertia>
+          <ixx>0.0223084</ixx>
+          <ixy>-2.50614e-05</ixy>
+          <ixz>-0.00188494</ixz>
+          <iyy>0.0224224</iyy>
+          <iyz>0.000332193</iyz>
+          <izz>0.00158589</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LSY_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LSY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LSY_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LSY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LSY' type='revolute'>
+      <child>Body_LSY</child>
+      <parent>Body_LSR</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.90646</lower>
+          <upper>2.90549</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LEP'>
+      <pose>0.03 0.2485 -0.3 0 -0 0</pose>
+      <inertial>
+        <pose>-0.024446 -0.0182799 -0.0396913 0 -0 0</pose>
+        <mass>0.29817</mass>
+        <inertia>
+          <ixx>0.000394363</ixx>
+          <ixy>-1.34385e-06</ixy>
+          <ixz>7.57997e-05</ixz>
+          <iyy>0.000374815</iyy>
+          <iyz>2.18983e-06</iyz>
+          <izz>0.000273942</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LEP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LEP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LEP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LEP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LEP' type='revolute'>
+      <child>Body_LEP</child>
+      <parent>Body_LSY</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-2.32516</lower>
+          <upper>0.682912</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LWY'>
+      <pose>0 0.2295 -0.352 0 -0 0</pose>
+      <inertial>
+        <pose>3.39374e-05 0.055998 -0.151262 0 -0 0</pose>
+        <mass>1.68933</mass>
+        <inertia>
+          <ixx>0.0176541</ixx>
+          <ixy>-3.61034e-06</ixy>
+          <ixz>8.3732e-06</ixz>
+          <iyy>0.0150234</iyy>
+          <iyz>-0.00516603</iyz>
+          <izz>0.00331147</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LWY_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LWY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LWY_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LWY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LWY' type='revolute'>
+      <child>Body_LWY</child>
+      <parent>Body_LEP</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.85067</lower>
+          <upper>2.77279</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LWP'>
+      <pose>0 0.2965 -0.6138 3.14159 1.57079 3.14159</pose>
+      <inertial>
+        <pose>-0.014532 -0.0546995 -0.0003678 0 -0 0</pose>
+        <mass>0.327632</mass>
+        <inertia>
+          <ixx>0.000346969</ixx>
+          <ixy>5.89262e-05</ixy>
+          <ixz>4.30826e-06</ixz>
+          <iyy>0.00057563</iyy>
+          <iyz>-1.25505e-06</iyz>
+          <izz>0.000744125</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LWP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LWP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LWP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LWP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LWP' type='revolute'>
+      <child>Body_LWP</child>
+      <parent>Body_LWY</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-3.28247</lower>
+          <upper>2.13678</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LWR'>
+      <pose>1.32207e-13 0.2295 -0.6408 3.14159 1.57079 3.14159</pose>
+      <inertial>
+        <pose>0.0500859 -0.00044131 0.000743244 0 -0 0</pose>
+        <mass>1.36227</mass>
+        <inertia>
+          <ixx>0.00147027</ixx>
+          <ixy>5.84401e-05</ixy>
+          <ixz>9.84567e-06</ixz>
+          <iyy>0.00169971</iyy>
+          <iyz>-1.16811e-05</iyz>
+          <izz>0.00157248</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LWR_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LWR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LWR_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LWR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LWR' type='revolute'>
+      <child>Body_LWR</child>
+      <parent>Body_LWP</parent>
+      <axis>
+        <xyz>4.89658e-12 0 -1</xyz>
+        <limit>
+          <lower>-2.69956</lower>
+          <upper>2.70005</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LF11'>
+      <pose>-0.02247 0.2035 -0.7283 1.57078 1.57079 3.14158</pose>
+      <inertial>
+        <pose>0.0136755 0.000167666 -0.00019875 0 -0 0</pose>
+        <mass>0.0263711</mass>
+        <inertia>
+          <ixx>1.98396e-06</ixx>
+          <ixy>3.66951e-08</ixy>
+          <ixz>7.82217e-08</ixz>
+          <iyy>6.9016e-06</iyy>
+          <iyz>5.52886e-09</iyz>
+          <izz>6.59612e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LF11_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF11.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LF11_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF11.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LF1' type='revolute'>
+      <child>Body_LF11</child>
+      <parent>Body_LWR</parent>
+      <axis>
+        <xyz>3.67321e-06 -1 5.55112e-17</xyz>
+        <limit>
+          <lower>-1.8535</lower>
+          <upper>0.2</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LF12'>
+      <pose>-0.02247 0.2055 -0.770252 -4.97219e-12 0.174496 1.5708</pose>
+      <inertial>
+        <pose>0.0110393 0.000234061 -5.56986e-05 0 -0 0</pose>
+        <mass>0.0161894</mass>
+        <inertia>
+          <ixx>1.30911e-06</ixx>
+          <ixy>1.49424e-08</ixy>
+          <ixz>5.01487e-08</ixz>
+          <iyy>2.82044e-06</iyy>
+          <iyz>2.86294e-09</iyz>
+          <izz>3.05889e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LF12_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LF12_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LF12' type='revolute'>
+      <child>Body_LF12</child>
+      <parent>Body_LF11</parent>
+      <axis>
+        <xyz>-1 -3.67321e-06 -4.89668e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LF13'>
+      <pose>-0.0224701 0.235255 -0.774076 -1.43204e-11 -1.2218 1.5708</pose>
+      <inertial>
+        <pose>0.0171498 -0.000431859 -0.000224831 0 -0 0</pose>
+        <mass>0.0182222</mass>
+        <inertia>
+          <ixx>1.03182e-06</ixx>
+          <ixy>-4.94978e-08</ixy>
+          <ixz>1.22492e-07</ixz>
+          <iyy>2.57255e-06</iyy>
+          <iyz>5.58419e-09</iyz>
+          <izz>2.54656e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LF13_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LF13_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LF13' type='revolute'>
+      <child>Body_LF13</child>
+      <parent>Body_LF12</parent>
+      <axis>
+        <xyz>-1 -3.67321e-06 -4.89689e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LF21'>
+      <pose>-3e-05 0.2555 -0.7283 -1.57078 1.57079 -3.14158</pose>
+      <inertial>
+        <pose>0.0136755 0.000167666 -0.00019875 0 -0 0</pose>
+        <mass>0.0263711</mass>
+        <inertia>
+          <ixx>1.98396e-06</ixx>
+          <ixy>3.66951e-08</ixy>
+          <ixz>7.82217e-08</ixz>
+          <iyy>6.9016e-06</iyy>
+          <iyz>5.52886e-09</iyz>
+          <izz>6.59612e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LF21_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF11.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LF21_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF11.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LF21' type='revolute'>
+      <child>Body_LF21</child>
+      <parent>Body_LWR</parent>
+      <axis>
+        <xyz>-3.67321e-06 -1 -5.55112e-17</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LF22'>
+      <pose>-3.00073e-05 0.2535 -0.770252 4.97219e-12 0.174496 -1.5708</pose>
+      <inertial>
+        <pose>0.0110393 0.000234061 -5.56986e-05 0 -0 0</pose>
+        <mass>0.0161894</mass>
+        <inertia>
+          <ixx>1.30911e-06</ixx>
+          <ixy>1.49424e-08</ixy>
+          <ixz>5.01487e-08</ixz>
+          <iyy>2.82044e-06</iyy>
+          <iyz>2.86294e-09</iyz>
+          <izz>3.05889e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LF22_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LF22_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LF22' type='revolute'>
+      <child>Body_LF22</child>
+      <parent>Body_LF21</parent>
+      <axis>
+        <xyz>1 -3.67321e-06 4.89668e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LF23'>
+      <pose>-3.01166e-05 0.223745 -0.774076 1.43204e-11 -1.2218 -1.5708</pose>
+      <inertial>
+        <pose>0.0171498 -0.000431859 -0.000224831 0 -0 0</pose>
+        <mass>0.0182222</mass>
+        <inertia>
+          <ixx>1.03182e-06</ixx>
+          <ixy>-4.94978e-08</ixy>
+          <ixz>1.22492e-07</ixz>
+          <iyy>2.57255e-06</iyy>
+          <iyz>5.58419e-09</iyz>
+          <izz>2.54656e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LF23_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LF23_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LF23' type='revolute'>
+      <child>Body_LF23</child>
+      <parent>Body_LF22</parent>
+      <axis>
+        <xyz>1 -3.67321e-06 4.89689e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LF31'>
+      <pose>0.02247 0.2035 -0.7283 1.57078 1.57079 3.14158</pose>
+      <inertial>
+        <pose>0.0136755 0.000167666 -0.00019875 0 -0 0</pose>
+        <mass>0.0263711</mass>
+        <inertia>
+          <ixx>1.98396e-06</ixx>
+          <ixy>3.66951e-08</ixy>
+          <ixz>7.82217e-08</ixz>
+          <iyy>6.9016e-06</iyy>
+          <iyz>5.52886e-09</iyz>
+          <izz>6.59612e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LF31_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF11.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LF31_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF11.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LF31' type='revolute'>
+      <child>Body_LF31</child>
+      <parent>Body_LWR</parent>
+      <axis>
+        <xyz>3.67321e-06 -1 5.55112e-17</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LF32'>
+      <pose>0.02247 0.2055 -0.770252 -4.97219e-12 0.174496 1.5708</pose>
+      <inertial>
+        <pose>0.0110393 0.000234061 -5.56986e-05 0 -0 0</pose>
+        <mass>0.0161894</mass>
+        <inertia>
+          <ixx>1.30911e-06</ixx>
+          <ixy>1.49424e-08</ixy>
+          <ixz>5.01487e-08</ixz>
+          <iyy>2.82044e-06</iyy>
+          <iyz>2.86294e-09</iyz>
+          <izz>3.05889e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LF32_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LF32_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LF32' type='revolute'>
+      <child>Body_LF32</child>
+      <parent>Body_LF31</parent>
+      <axis>
+        <xyz>-1 -3.67321e-06 -4.89668e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LF33'>
+      <pose>0.0224699 0.235255 -0.774076 -1.43204e-11 -1.2218 1.5708</pose>
+      <inertial>
+        <pose>0.0171498 -0.000431859 -0.000224831 0 -0 0</pose>
+        <mass>0.0182222</mass>
+        <inertia>
+          <ixx>1.03182e-06</ixx>
+          <ixy>-4.94978e-08</ixy>
+          <ixz>1.22492e-07</ixz>
+          <iyy>2.57255e-06</iyy>
+          <iyz>5.58419e-09</iyz>
+          <izz>2.54656e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LF33_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LF33_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LF33' type='revolute'>
+      <child>Body_LF33</child>
+      <parent>Body_LF32</parent>
+      <axis>
+        <xyz>-1 -3.67321e-06 -4.89689e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_NK1'>
+      <pose>0 -1.0274e-05 0.0585 0 -0 0</pose>
+      <inertial>
+        <pose>-0.013163 1.7706e-06 0.036774 0 -0 0</pose>
+        <mass>0.18123</mass>
+        <inertia>
+          <ixx>0.0001082</ixx>
+          <ixy>0</ixy>
+          <ixz>-2.1626e-06</ixz>
+          <iyy>0.00011192</iyy>
+          <iyz>-1.3008e-09</iyz>
+          <izz>0.00011594</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_NK1_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_NK1_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_NK1_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_NK1_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='NK1' type='revolute'>
+      <child>Body_NK1</child>
+      <parent>Body_Torso</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_NK2'>
+      <pose>0 0.0354897 0.0835 0 -0 0</pose>
+      <inertial>
+        <pose>-0.00051569 -0.035537 0.11073 0 -0 0</pose>
+        <mass>0.67971</mass>
+        <inertia>
+          <ixx>0.0048072</ixx>
+          <ixy>-7.0061e-07</ixy>
+          <ixz>-2.0605e-05</ixz>
+          <iyy>0.0030587</iyy>
+          <iyz>-6.6145e-05</iyz>
+          <izz>0.0019744</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_NK2_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_NK2_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_NK2_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_NK2_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='NK2' type='revolute'>
+      <child>Body_NK2</child>
+      <parent>Body_NK1</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_NK3'>
+      <pose>0 -0.0355103 0.1695 0 -0 0</pose>
+      <inertial>
+        <pose>0.00860436 0.0355 0.0060989 0 -0 0</pose>
+        <mass>0.255818</mass>
+        <inertia>
+          <ixx>0.00015025</ixx>
+          <ixy>0</ixy>
+          <ixz>-3.69168e-06</ixz>
+          <iyy>0.000195009</iyy>
+          <iyz>0</iyz>
+          <izz>0.000211951</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_NK3_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_NK3_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_NK3_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_NK3_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='NK3' type='revolute'>
+      <child>Body_NK3</child>
+      <parent>Body_NK2</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RSP'>
+      <pose>0 -0.1435 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.0211206 -0.0669652 0.000177534 0 -0 0</pose>
+        <mass>0.925752</mass>
+        <inertia>
+          <ixx>0.00168445</ixx>
+          <ixy>-0.000340206</ixy>
+          <ixz>-6.3166e-06</ixz>
+          <iyy>0.00157378</iyy>
+          <iyz>7.95927e-06</iyz>
+          <izz>0.0024477</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RSP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RSP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RSP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RSP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RSP' type='revolute'>
+      <child>Body_RSP</child>
+      <parent>Body_Torso</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-3.81024</lower>
+          <upper>3.72959</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RSR'>
+      <pose>0.033 -0.2295 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.037565 0.000356075 -0.0117791 0 -0 0</pose>
+        <mass>0.772866</mass>
+        <inertia>
+          <ixx>0.000583427</ixx>
+          <ixy>8.46802e-07</ixy>
+          <ixz>-3.33711e-05</ixz>
+          <iyy>0.000797705</iyy>
+          <iyz>-1.18579e-05</iyz>
+          <izz>0.000561295</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RSR_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RSR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RSR_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RSR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RSR' type='revolute'>
+      <child>Body_RSR</child>
+      <parent>Body_RSP</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-3.14048</lower>
+          <upper>0.629434</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RSY'>
+      <pose>0 -0.2295 -0.027 0 -0 0</pose>
+      <inertial>
+        <pose>0.00919437 0.00191434 -0.169537 0 -0 0</pose>
+        <mass>2.05732</mass>
+        <inertia>
+          <ixx>0.0223084</ixx>
+          <ixy>2.50614e-05</ixy>
+          <ixz>-0.00188494</ixz>
+          <iyy>0.0224224</iyy>
+          <iyz>-0.000332193</iyz>
+          <izz>0.00158589</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RSY_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RSY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RSY_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RSY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RSY' type='revolute'>
+      <child>Body_RSY</child>
+      <parent>Body_RSR</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.91614</lower>
+          <upper>2.8801</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_REP'>
+      <pose>0.03 -0.2485 -0.3 0 -0 0</pose>
+      <inertial>
+        <pose>-0.024446 0.0182799 -0.0396913 0 -0 0</pose>
+        <mass>0.29817</mass>
+        <inertia>
+          <ixx>0.000394363</ixx>
+          <ixy>1.34385e-06</ixy>
+          <ixz>7.57997e-05</ixz>
+          <iyy>0.000374815</iyy>
+          <iyz>-2.18983e-06</iyz>
+          <izz>0.000273942</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_REP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_REP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_REP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_REP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='REP' type='revolute'>
+      <child>Body_REP</child>
+      <parent>Body_RSY</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-2.31516</lower>
+          <upper>0.692918</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RWY'>
+      <pose>0 -0.2295 -0.352 0 -0 0</pose>
+      <inertial>
+        <pose>3.39374e-05 -0.055998 -0.151262 0 -0 0</pose>
+        <mass>1.68933</mass>
+        <inertia>
+          <ixx>0.0176541</ixx>
+          <ixy>3.61034e-06</ixy>
+          <ixz>8.3732e-06</ixz>
+          <iyy>0.0150234</iyy>
+          <iyz>0.00516603</iyz>
+          <izz>0.00331147</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RWY_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RWY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RWY_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RWY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RWY' type='revolute'>
+      <child>Body_RWY</child>
+      <parent>Body_REP</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.7613</lower>
+          <upper>2.86215</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RWP'>
+      <pose>0 -0.2965 -0.6138 3.14159 1.57079 3.14159</pose>
+      <inertial>
+        <pose>-0.014532 0.0546995 -0.0003678 0 -0 0</pose>
+        <mass>0.327632</mass>
+        <inertia>
+          <ixx>0.000346969</ixx>
+          <ixy>-5.89262e-05</ixy>
+          <ixz>4.30826e-06</ixz>
+          <iyy>0.00057563</iyy>
+          <iyz>1.25505e-06</iyz>
+          <izz>0.000744125</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RWP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RWP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RWP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RWP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RWP' type='revolute'>
+      <child>Body_RWP</child>
+      <parent>Body_RWY</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-3.2903</lower>
+          <upper>2.11324</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RWR'>
+      <pose>1.32207e-13 -0.2295 -0.6408 3.14159 1.57079 3.14159</pose>
+      <inertial>
+        <pose>0.0500859 0.00044131 0.000743244 0 -0 0</pose>
+        <mass>1.36227</mass>
+        <inertia>
+          <ixx>0.00147027</ixx>
+          <ixy>-5.84401e-05</ixy>
+          <ixz>9.84567e-06</ixz>
+          <iyy>0.00169971</iyy>
+          <iyz>1.16811e-05</iyz>
+          <izz>0.00157248</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RWR_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RWR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RWR_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RWR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RWR' type='revolute'>
+      <child>Body_RWR</child>
+      <parent>Body_RWP</parent>
+      <axis>
+        <xyz>4.89658e-12 0 -1</xyz>
+        <limit>
+          <lower>-2.69195</lower>
+          <upper>2.70766</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF11'>
+      <pose>0.02247 -0.2555 -0.7283 -1.57078 1.57079 -3.14158</pose>
+      <inertial>
+        <pose>0.0136755 0.000167666 0.00019875 0 -0 0</pose>
+        <mass>0.0263711</mass>
+        <inertia>
+          <ixx>1.98396e-06</ixx>
+          <ixy>3.66951e-08</ixy>
+          <ixz>-7.82217e-08</ixz>
+          <iyy>6.9016e-06</iyy>
+          <iyz>-5.52886e-09</iyz>
+          <izz>6.59612e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF11_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF11.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF11_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF11.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF1' type='revolute'>
+      <child>Body_RF11</child>
+      <parent>Body_RWR</parent>
+      <axis>
+        <xyz>-3.67321e-06 -1 -5.55112e-17</xyz>
+        <limit>
+          <lower>-1.8535</lower>
+          <upper>0.2</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF12'>
+      <pose>0.02247 -0.2535 -0.770252 3.14159 0.174496 1.57079</pose>
+      <inertial>
+        <pose>0.0110393 0.000234061 5.56986e-05 0 -0 0</pose>
+        <mass>0.0161894</mass>
+        <inertia>
+          <ixx>1.30911e-06</ixx>
+          <ixy>1.49424e-08</ixy>
+          <ixz>-5.01487e-08</ixz>
+          <iyy>2.82044e-06</iyy>
+          <iyz>-2.86294e-09</iyz>
+          <izz>3.05889e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF12_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF12_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF12' type='revolute'>
+      <child>Body_RF12</child>
+      <parent>Body_RF11</parent>
+      <axis>
+        <xyz>1 -3.67321e-06 4.89665e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF13'>
+      <pose>0.0224701 -0.223745 -0.774076 3.14159 -1.2218 1.57079</pose>
+      <inertial>
+        <pose>0.0171498 -0.000431859 0.000224831 0 -0 0</pose>
+        <mass>0.0182222</mass>
+        <inertia>
+          <ixx>1.03182e-06</ixx>
+          <ixy>-4.94978e-08</ixy>
+          <ixz>-1.22492e-07</ixz>
+          <iyy>2.57255e-06</iyy>
+          <iyz>-5.58419e-09</iyz>
+          <izz>2.54656e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF13_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF13_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF13' type='revolute'>
+      <child>Body_RF13</child>
+      <parent>Body_RF12</parent>
+      <axis>
+        <xyz>1 -3.67321e-06 4.89672e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF41'>
+      <pose>0.0445 -0.2035 -0.7283 1.57078 1.57079 3.14158</pose>
+      <inertial>
+        <pose>0.0136755 0.000167666 0.000198749 0 -0 0</pose>
+        <mass>0.0263711</mass>
+        <inertia>
+          <ixx>1.98396e-06</ixx>
+          <ixy>3.66952e-08</ixy>
+          <ixz>-7.82217e-08</ixz>
+          <iyy>6.9016e-06</iyy>
+          <iyz>-5.52885e-09</iyz>
+          <izz>6.59612e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF41_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF11.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF41_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF11.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF2' type='revolute'>
+      <child>Body_RF41</child>
+      <parent>Body_RWR</parent>
+      <axis>
+        <xyz>3.67321e-06 -1 5.55112e-17</xyz>
+        <limit>
+          <lower>-1.91728</lower>
+          <upper>0</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF42'>
+      <pose>0.0445 -0.2055 -0.770252 -3.14159 0.174496 -1.57079</pose>
+      <inertial>
+        <pose>0.0110393 0.000234061 5.56986e-05 0 -0 0</pose>
+        <mass>0.0161894</mass>
+        <inertia>
+          <ixx>1.30911e-06</ixx>
+          <ixy>1.49424e-08</ixy>
+          <ixz>-5.01487e-08</ixz>
+          <iyy>2.82044e-06</iyy>
+          <iyz>-2.86294e-09</iyz>
+          <izz>3.05889e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF42_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF42_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF42' type='revolute'>
+      <child>Body_RF42</child>
+      <parent>Body_RF41</parent>
+      <axis>
+        <xyz>-1 -3.67321e-06 -4.89665e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF43'>
+      <pose>0.0445001 -0.235255 -0.774076 -3.14159 -1.2218 -1.57079</pose>
+      <inertial>
+        <pose>0.0171498 -0.000431859 0.000224831 0 -0 0</pose>
+        <mass>0.0182222</mass>
+        <inertia>
+          <ixx>1.03182e-06</ixx>
+          <ixy>-4.94978e-08</ixy>
+          <ixz>-1.22492e-07</ixz>
+          <iyy>2.57255e-06</iyy>
+          <iyz>-5.58419e-09</iyz>
+          <izz>2.54656e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF43_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF43_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF43' type='revolute'>
+      <child>Body_RF43</child>
+      <parent>Body_RF42</parent>
+      <axis>
+        <xyz>-1 -3.67321e-06 -4.89672e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF21'>
+      <pose>3e-05 -0.2035 -0.7283 1.57078 1.57079 3.14158</pose>
+      <inertial>
+        <pose>0.0136755 0.000167666 0.00019875 0 -0 0</pose>
+        <mass>0.0263711</mass>
+        <inertia>
+          <ixx>1.98396e-06</ixx>
+          <ixy>3.66951e-08</ixy>
+          <ixz>-7.82217e-08</ixz>
+          <iyy>6.9016e-06</iyy>
+          <iyz>-5.52886e-09</iyz>
+          <izz>6.59612e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF21_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF11.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF21_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF11.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF21' type='revolute'>
+      <child>Body_RF21</child>
+      <parent>Body_RWR</parent>
+      <axis>
+        <xyz>3.67321e-06 -1 5.55112e-17</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF22'>
+      <pose>3.00073e-05 -0.2055 -0.770252 -3.14159 0.174496 -1.57079</pose>
+      <inertial>
+        <pose>0.0110393 0.000234061 5.56986e-05 0 -0 0</pose>
+        <mass>0.0161894</mass>
+        <inertia>
+          <ixx>1.30911e-06</ixx>
+          <ixy>1.49424e-08</ixy>
+          <ixz>-5.01487e-08</ixz>
+          <iyy>2.82044e-06</iyy>
+          <iyz>-2.86294e-09</iyz>
+          <izz>3.05889e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF22_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF22_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF22' type='revolute'>
+      <child>Body_RF22</child>
+      <parent>Body_RF21</parent>
+      <axis>
+        <xyz>-1 -3.67321e-06 -4.89665e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF23'>
+      <pose>3.01166e-05 -0.235255 -0.774076 -3.14159 -1.2218 -1.57079</pose>
+      <inertial>
+        <pose>0.0171498 -0.000431859 0.000224831 0 -0 0</pose>
+        <mass>0.0182222</mass>
+        <inertia>
+          <ixx>1.03182e-06</ixx>
+          <ixy>-4.94978e-08</ixy>
+          <ixz>-1.22492e-07</ixz>
+          <iyy>2.57255e-06</iyy>
+          <iyz>-5.58419e-09</iyz>
+          <izz>2.54656e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF23_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF23_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF23' type='revolute'>
+      <child>Body_RF23</child>
+      <parent>Body_RF22</parent>
+      <axis>
+        <xyz>-1 -3.67321e-06 -4.89672e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF31'>
+      <pose>-0.02247 -0.2555 -0.7283 -1.57078 1.57079 -3.14158</pose>
+      <inertial>
+        <pose>0.0136755 0.000167666 0.00019875 0 -0 0</pose>
+        <mass>0.0263711</mass>
+        <inertia>
+          <ixx>1.98396e-06</ixx>
+          <ixy>3.66951e-08</ixy>
+          <ixz>-7.82217e-08</ixz>
+          <iyy>6.9016e-06</iyy>
+          <iyz>-5.52886e-09</iyz>
+          <izz>6.59612e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF31_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF11.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF31_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF11.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF31' type='revolute'>
+      <child>Body_RF31</child>
+      <parent>Body_RWR</parent>
+      <axis>
+        <xyz>-3.67321e-06 -1 -5.55112e-17</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF32'>
+      <pose>-0.02247 -0.2535 -0.770252 3.14159 0.174496 1.57079</pose>
+      <inertial>
+        <pose>0.0110393 0.000234061 5.56986e-05 0 -0 0</pose>
+        <mass>0.0161894</mass>
+        <inertia>
+          <ixx>1.30911e-06</ixx>
+          <ixy>1.49424e-08</ixy>
+          <ixz>-5.01487e-08</ixz>
+          <iyy>2.82044e-06</iyy>
+          <iyz>-2.86294e-09</iyz>
+          <izz>3.05889e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF32_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF32_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF12_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF32' type='revolute'>
+      <child>Body_RF32</child>
+      <parent>Body_RF31</parent>
+      <axis>
+        <xyz>1 -3.67321e-06 4.89665e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RF33'>
+      <pose>-0.0224699 -0.223745 -0.774076 3.14159 -1.2218 1.57079</pose>
+      <inertial>
+        <pose>0.0171498 -0.000431859 0.000224831 0 -0 0</pose>
+        <mass>0.0182222</mass>
+        <inertia>
+          <ixx>1.03182e-06</ixx>
+          <ixy>-4.94978e-08</ixy>
+          <ixz>-1.22492e-07</ixz>
+          <iyy>2.57255e-06</iyy>
+          <iyz>-5.58419e-09</iyz>
+          <izz>2.54656e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RF33_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RF33_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RF13_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RF33' type='revolute'>
+      <child>Body_RF33</child>
+      <parent>Body_RF32</parent>
+      <axis>
+        <xyz>1 -3.67321e-06 4.89672e-12</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_TSY'>
+      <pose>-0.00099991 0 -0.2061 0 -0 0</pose>
+      <inertial>
+        <pose>-0.0172313 7.74734e-06 -0.0326399 0 -0 0</pose>
+        <mass>4.83019</mass>
+        <inertia>
+          <ixx>0.0242711</ixx>
+          <ixy>4.03309e-06</ixy>
+          <ixz>0.000107562</ixz>
+          <iyy>0.0103773</iyy>
+          <iyz>1.38922e-06</iyz>
+          <izz>0.0286361</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_TSY_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_TSY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_TSY_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_TSY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='TSY' type='revolute'>
+      <child>Body_TSY</child>
+      <parent>Body_Torso</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.06814</lower>
+          <upper>1.06815</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LHY'>
+      <pose>-0.00099991 0.0885 -0.2812 0 -0 0</pose>
+      <inertial>
+        <pose>0.0357455 9.87014e-06 -0.0612769 0 -0 0</pose>
+        <mass>1.39677</mass>
+        <inertia>
+          <ixx>0.00288797</ixx>
+          <ixy>-9.31467e-07</ixy>
+          <ixz>-0.00107856</ixz>
+          <iyy>0.00475787</iyy>
+          <iyz>1.27885e-06</iyz>
+          <izz>0.00300626</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LHY_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LHY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LHY_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LHY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LHY' type='revolute'>
+      <child>Body_LHY</child>
+      <parent>Body_TSY</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.57079</lower>
+          <upper>2.38762</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LHR'>
+      <pose>0.0510001 0.0885 -0.3722 0 -0 0</pose>
+      <inertial>
+        <pose>-0.0546752 -0.000755923 -0.0250479 0 -0 0</pose>
+        <mass>1.87327</mass>
+        <inertia>
+          <ixx>0.00271708</ixx>
+          <ixy>-6.95355e-06</ixy>
+          <ixz>-0.000124506</ixz>
+          <iyy>0.00314353</iyy>
+          <iyz>0.000179045</iyz>
+          <izz>0.00241625</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LHR_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LHR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LHR_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LHR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LHR' type='revolute'>
+      <child>Body_LHR</child>
+      <parent>Body_LHY</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-0.372754</lower>
+          <upper>0.559139</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LHP'>
+      <pose>-0.00099991 0.133 -0.3722 0 -0 0</pose>
+      <inertial>
+        <pose>0.0143079 -0.0329554 -0.191508 0 -0 0</pose>
+        <mass>4.08211</mass>
+        <inertia>
+          <ixx>0.0731345</ixx>
+          <ixy>-0.000774523</ixy>
+          <ixz>-0.00133507</ixz>
+          <iyy>0.0704116</iyy>
+          <iyz>0.00380082</iyz>
+          <izz>0.0104352</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LHP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LHP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LHP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LHP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LHP' type='revolute'>
+      <child>Body_LHP</child>
+      <parent>Body_LHR</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.85507</lower>
+          <upper>1.60068</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LKP'>
+      <pose>-0.00099991 0.1045 -0.7022 0 -0 0</pose>
+      <inertial>
+        <pose>0.015377 -0.023243 -0.16683 0 -0 0</pose>
+        <mass>1.5575</mass>
+        <inertia>
+          <ixx>0.023902</ixx>
+          <ixy>0.00016341</ixy>
+          <ixz>0.0003317</ixz>
+          <iyy>0.021931</iyy>
+          <iyz>0.00047965</iyz>
+          <izz>0.0043485</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LKP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LKP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LKP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LKP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LKP' type='revolute'>
+      <child>Body_LKP</child>
+      <parent>Body_LHP</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.765758</lower>
+          <upper>2.7057</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LAP'>
+      <pose>-0.00099991 0.1515 -1.0322 0 -0 0</pose>
+      <inertial>
+        <pose>0.0155171 -0.0515087 0.00905289 0 -0 0</pose>
+        <mass>2.28753</mass>
+        <inertia>
+          <ixx>0.00372279</ixx>
+          <ixy>-0.000408405</ixy>
+          <ixz>-0.000324861</ixz>
+          <iyy>0.0039578</iyy>
+          <iyz>-0.000345535</iyz>
+          <izz>0.00437931</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_LAP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LAP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LAP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LAP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LAP' type='revolute'>
+      <child>Body_LAP</child>
+      <parent>Body_LKP</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.64334</lower>
+          <upper>2.25224</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_LAR'>
+      <pose>-3.7695001 -0.2500 -1.0622 0 -0 0</pose>
+      <collision name='Body_LAR_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RAR_STABLE.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_LAR_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_LAR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='LAR' type='revolute'>
+      <child>Body_LAR</child>
+      <parent>Body_LAP</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.73953</lower>
+          <upper>1.73954</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RHY'>
+      <pose>-0.00099991 -0.0885 -0.2812 0 -0 0</pose>
+      <inertial>
+        <pose>0.0357455 -9.87014e-06 -0.0612769 0 -0 0</pose>
+        <mass>1.39677</mass>
+        <inertia>
+          <ixx>0.00288797</ixx>
+          <ixy>9.31467e-07</ixy>
+          <ixz>-0.00107856</ixz>
+          <iyy>0.00475787</iyy>
+          <iyz>-1.27885e-06</iyz>
+          <izz>0.00300626</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RHY_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RHY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RHY_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RHY_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RHY' type='revolute'>
+      <child>Body_RHY</child>
+      <parent>Body_TSY</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.3876</lower>
+          <upper>1.5708</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RHR'>
+      <pose>0.0510001 -0.0885 -0.3722 0 -0 0</pose>
+      <inertial>
+        <pose>-0.0546752 0.000755923 -0.0250479 0 -0 0</pose>
+        <mass>1.87327</mass>
+        <inertia>
+          <ixx>0.00271708</ixx>
+          <ixy>6.95355e-06</ixy>
+          <ixz>-0.000124506</ixz>
+          <iyy>0.00314353</iyy>
+          <iyz>-0.000179045</iyz>
+          <izz>0.00241625</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RHR_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RHR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RHR_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RHR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RHR' type='revolute'>
+      <child>Body_RHR</child>
+      <parent>Body_RHY</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-0.559133</lower>
+          <upper>0.37276</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RHP'>
+      <pose>-0.00099991 -0.133 -0.3722 0 -0 0</pose>
+      <inertial>
+        <pose>0.0143079 0.0329554 -0.191508 0 -0 0</pose>
+        <mass>4.08211</mass>
+        <inertia>
+          <ixx>0.0731345</ixx>
+          <ixy>0.000774523</ixy>
+          <ixz>-0.00133507</ixz>
+          <iyy>0.0704116</iyy>
+          <iyz>-0.00380082</iyz>
+          <izz>0.0104352</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RHP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RHP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RHP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RHP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RHP' type='revolute'>
+      <child>Body_RHP</child>
+      <parent>Body_RHR</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.88157</lower>
+          <upper>1.57418</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RKP'>
+      <pose>-0.00099991 -0.1045 -0.7022 0 -0 0</pose>
+      <inertial>
+        <pose>0.015377 0.023243 -0.16683 0 -0 0</pose>
+        <mass>1.5575</mass>
+        <inertia>
+          <ixx>0.023902</ixx>
+          <ixy>-0.00016341</ixy>
+          <ixz>0.0003317</ixz>
+          <iyy>0.021931</iyy>
+          <iyz>-0.00047965</iyz>
+          <izz>0.0043485</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RKP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RKP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RKP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RKP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RKP' type='revolute'>
+      <child>Body_RKP</child>
+      <parent>Body_RHP</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.765758</lower>
+          <upper>2.7057</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RAP'>
+      <pose>-0.00099991 -0.1515 -1.0322 0 -0 0</pose>
+      <inertial>
+        <pose>0.0155171 0.0515087 0.00905289 0 -0 0</pose>
+        <mass>2.28753</mass>
+        <inertia>
+          <ixx>0.00372279</ixx>
+          <ixy>0.000408405</ixy>
+          <ixz>-0.000324861</ixz>
+          <iyy>0.0039578</iyy>
+          <iyz>0.000345535</iyz>
+          <izz>0.00437931</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_RAP_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RAP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RAP_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RAP_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RAP' type='revolute'>
+      <child>Body_RAP</child>
+      <parent>Body_RKP</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.64354</lower>
+          <upper>2.25203</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='Body_RAR'>
+      <pose>-3.7695001 -0.3985 -1.0622 0 -0 0</pose>
+      <collision name='Body_RAR_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RAR_STABLE.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Body_RAR_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://drchubo-gazebo/meshes/convhull_RAR_merged.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='RAR' type='revolute'>
+      <child>Body_RAR</child>
+      <parent>Body_RAP</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.73953</lower>
+          <upper>1.73954</upper>
+          <effort>25</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <plugin filename="/home/archr/projects/drchubo-gazebo/build/libdrchubo_plugin.so" name="drchubo_plugin" > 
+<!--    <plugin filename="drchubo-gazebo/build/libdrchubo_plugin.so" name="drchubo_plugin" >-->
+       <LSP>LSP</LSP>
+       <LSR>LSR</LSR>
+       <LSY>LSY</LSY>
+       <LEP>LEP</LEP>
+       <LWR>LWR</LWR>
+       <LWY>LWY</LWY>
+       <LWP>LWP</LWP>
+
+    
+       <RSP>RSP</RSP>
+       <RSR>RSR</RSR>
+       <RSY>RSY</RSY>
+       <REP>REP</REP>
+       <RWR>RWR</RWR>
+       <RWY>RWY</RWY>
+       <RWP>RWP</RWP>
+
+       <LAP>LAP</LAP>
+       <LAR>LAR</LAR>
+       <LKP>LKP</LKP>
+       <LHP>LHP</LHP>
+       <LHR>LHR</LHR>
+       <LHY>LHY</LHY>
+
+       <RAP>RAP</RAP>
+       <RAR>RAR</RAR>
+       <RKP>RKP</RKP>
+       <RHP>RHP</RHP>
+       <RHR>RHR</RHR>
+       <RHY>RHY</RHY>
+       
+       <NK1>NK1</NK1>
+       <NK2>NK2</NK2>
+       <NK3>NK3</NK3>
+
+       <TSY>TSY</TSY>
+
+       <RF1>RF1</RF1>
+       <RF11>RF11</RF11>
+       <RF12>RF12</RF12>
+       <RF13>RF13</RF13>
+  
+       <RF2>RF2</RF2>
+       <RF21>RF21</RF21>
+       <RF22>RF22</RF22>
+       <RF23>RF23</RF23>
+  
+       <RF3>RF3</RF3>
+       <RF31>RF31</RF31>
+       <RF32>RF32</RF32>
+       <RF33>RF33</RF33>
+
+
+       <LF1>LF1</LF1>
+       <LF11>LF11</LF11>
+       <LF12>LF12</LF12>
+       <LF13>LF13</LF13>
+       
+       <LF2>LF2</LF2>
+       <LF21>LF21</LF21>
+       <LF22>LF22</LF22>
+       <LF23>LF23</LF23>
+       
+       <LF3>LF3</LF3>
+       <LF31>LF31</LF31>
+       <LF32>LF32</LF32>
+       <LF33>LF33</LF33>
+
+           
+
+
+
+
+    </plugin> 
+  </model>
+</sdf>

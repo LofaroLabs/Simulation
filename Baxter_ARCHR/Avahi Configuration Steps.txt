@@ -1,0 +1,34 @@
+Avahi Configuration Steps:
+These steps assume your ethernet connection to the robot is on eth0.
+Shutdown Baxter and disconnect ethernet cable.
+Connect the laptop/workstation to Baxter using a Category-5 ethernet cable.
+Power up Baxter.
+
+Disable firewall on laptop if necessary:
+    $ sudo ufw disable
+
+Turn off the Ubuntu Network-Manager to prevent interference:
+Go to the Networking Icon drop-down menu in the top-right of the Desktop.
+
+Make sure 'Enable Networking' is unchecked (if checked, select the option in the menu to disable)
+Check status of eth0:
+    $ ifconfig eth0
+
+You should not see any IP addresses under 'inet'.
+Use Avahi to designate an IP address to eth0 (do not close the terminal after running avahi-autoipd):
+    $ sudo avahi-autoipd eth0
+
+Make sure an IP address is successfully claimed. eg:
+    Found user 'avahi-autoipd' (UID 104) and group 'avahi-autoipd' (GID 111).
+    Successfully called chroot().
+    Successfully dropped root privileges.
+    Starting with address 169.254.8.16
+    Callout BIND, address 169.254.8.16 on interface eth0
+    Successfully claimed IP address 169.254.8.16
+
+Keep this Terminal running in the background.
+Open a New Terminal to continue.
+
+Find the local hostname of the robot by running avahi-browse:
+    $ avahi-browse -a -r
+   The default local hostname of the robot is the Serial Number followed by local. Ex: '011303P0017.local'.

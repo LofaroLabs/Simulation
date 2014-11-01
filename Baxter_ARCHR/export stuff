@@ -4,3 +4,4 @@ export ROS_MASTER_URI=http://localhost:11311
 roslaunch baxter_gazebo baxter_world.launch
 
 sudo chmod 666 /dev/ttyUSB0
+rosrun baxter_tools enable_robot.py -e

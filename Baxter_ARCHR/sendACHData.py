@@ -49,6 +49,8 @@ import hubo_ach as ha
 import ach
 from ctypes import *
 
+window = 10
+#left arm
 s0 = 0;
 s1 = 0;
 e0 = 0;
@@ -64,7 +66,22 @@ w0List = [0, 0, 0, 0, 0];
 w1List = [0, 0, 0, 0, 0];
 w2List = [0, 0, 0, 0, 0];
 lf2List = [0, 0, 0, 0, 0];
-window = 10
+#right arm
+s0_r = 0;
+s1_r = 0;
+e0_r = 0;
+e1_r = 0;
+w0_r = 0;
+w1_r = 0;
+w2_r = 0;
+s0List_r = [0, 0, 0, 0, 0];
+s1List_r = [0, 0, 0, 0, 0];
+e0List_r = [0, 0, 0, 0, 0];
+e1List_r = [0, 0, 0, 0, 0];
+w0List_r = [0, 0, 0, 0, 0];
+w1List_r = [0, 0, 0, 0, 0];
+w2List_r = [0, 0, 0, 0, 0];
+rf2List = [0, 0, 0, 0, 0];
 #Assigning from profile
 Ax = [1024,2047]
 
@@ -111,7 +128,7 @@ def main(settings):
     for actuator in myActuators:
         actuator.moving_speed = 80
         actuator.synchronized = True
-        actuator.torque_enable = True
+        actuator.torque_enable = False
         actuator.torque_limit = 0
         actuator.max_torque = 0
 
@@ -119,11 +136,11 @@ def main(settings):
     while ( (len(s0List)<window) and (len(s1List)<window) ):
         actuator.read_all()
         for actuator in myActuators:
-                if ( actuator.id == 1):   
+                '''if ( actuator.id == 1):   
                     s0List.append(dyn2rad(actuator.current_position));             
-                    s0 = np.mean(s0List);
+                    s0 = np.mean(s0List);'''
                 if ( actuator.id == 2):     
-                    s1List.append(dyn2rad(actuator.current_position));             
+                    s1List.append(dyn2rad(actuator.current_position)+3.14);             
                     s1 = np.mean(s1List);                       
                 if ( actuator.id == 3): 
                     e0List.append(dyn2rad(actuator.current_position));             
@@ -137,63 +154,129 @@ def main(settings):
                 if ( actuator.id == 6):      
                     w1List.append(dyn2rad(actuator.current_position));             
                     w1 = np.mean(w1List);                    
-                if ( actuator.id == 7):                
+                '''if ( actuator.id == 7):                
                     w2List.append(dyn2rad(actuator.current_position));             
-                    w2 = np.mean(w2List);  
-                if ( actuator.id == 8):  
+                    w2 = np.mean(w2List);
+                if ( actuator.id == 18):  
                     lf2List.append(dyn2rad(actuator.current_position));             
-                    lf2 = np.mean(lf2List);                              
+                    lf2 = np.mean(lf2List);'''                          
+                if ( actuator.id == 12):     
+                    s1List_r.append(dyn2rad(actuator.current_position));             
+                    s1_r = np.mean(s1List_r);                       
+                if ( actuator.id == 13): 
+                    e0List_r.append(dyn2rad(actuator.current_position));             
+                    e0_r = np.mean(e0List_r);                                                 
+                if ( actuator.id == 14):   
+                    e1List_r.append(dyn2rad(actuator.current_position));             
+                    e1_r = np.mean(e1List_r);                        
+                if ( actuator.id == 15):   
+                    w0List_r.append(dyn2rad(actuator.current_position));             
+                    w0_r = np.mean(w0List_r);                         
+                if ( actuator.id == 16):      
+                    w1List.append(dyn2rad(actuator.current_position));             
+                    w1_r = np.mean(w1List_r);                    
+                '''if ( actuator.id == 17):                
+                    w2List_r.append(dyn2rad(actuator.current_position));             
+                    w2_r = np.mean(w2List_r);                        
+                if ( actuator.id == 18):  
+                    rf2List.append(dyn2rad(actuator.current_position));             
+                    rf2 = np.mean(rf2List);  '''                            
         time.sleep(.01) #200 Hz refresh rate
 
-
+    #temporary disable system and check if all lists are size 10 in while loop?
     #read data in real-time           
     timeout = time.time() + 60*180   #Terminate 180 minutes from now
     while True:    
         actuator.read_all()
     	for actuator in myActuators:
-                if ( actuator.id == 1):   
+                #left arm
+                '''if ( actuator.id == 1):   
                     s0List.append(dyn2rad(actuator.current_position));             
                     s0List.pop(0);
                     s0 = np.mean(s0List);
-                    ref.ref[ha.RSY] = s0;
+                    ref.ref[ha.LSY] = s0;'''
                 if ( actuator.id == 2):     
-                    s1List.append(dyn2rad(actuator.current_position));             
+                    s1List.append(-dyn2rad(actuator.current_position));             
                     s1List.pop(0);
                     s1 = np.mean(s1List);                       
-                    ref.ref[ha.RSP] = s1;
+                    ref.ref[ha.LSP] = s1;
                 if ( actuator.id == 3): 
                     e0List.append(dyn2rad(actuator.current_position));             
                     e0List.pop(0);
                     e0 = np.mean(e0List);                       
-                    ref.ref[ha.RSR] = e0;                           
+                    ref.ref[ha.LSR] = e0;                           
                 if ( actuator.id == 4):   
                     e1List.append(dyn2rad(actuator.current_position));             
                     e1List.pop(0);
                     e1 = np.mean(e1List);                        
-                    ref.ref[ha.REB] = e1 - 1.73; #offset of 1.73
+                    ref.ref[ha.LEB] = e1 - 1.73; #offset of 1.73
                 if ( actuator.id == 5):   
                     w0List.append(dyn2rad(actuator.current_position));             
                     w0List.pop(0);
                     w0 = np.mean(w0List);                         
-                    ref.ref[ha.RHY] = w0;
+                    ref.ref[ha.LHY] = w0;
                 if ( actuator.id == 6):      
                     w1List.append(dyn2rad(actuator.current_position));             
                     w1List.pop(0);
                     w1 = np.mean(w1List);                    
-                    ref.ref[ha.RHP] = w1;
-                if ( actuator.id == 7):                
+                    ref.ref[ha.LHP] = w1;
+                '''if ( actuator.id == 7):                
                     w2List.append(dyn2rad(actuator.current_position));             
                     w2List.pop(0);
                     w2 = np.mean(w2List);  
-                    ref.ref[ha.RWR] = w2;                
+                    ref.ref[ha.LWR] = w2;                
                     #for debugging: print "[ID] radian value = %f" %dyn2rad(actuator.current_position) 
-                    print "s1, e0 radian value = %f %f %f %f" %(ref.ref[ha.RSY], ref.ref[ha.RSP], ref.ref[ha.RSR], ref.ref[ha.RWR])
+                    print "LSY, LSP, LSR, LWR values = %f %f %f %f" %(ref.ref[ha.LSY], ref.ref[ha.LSP], ref.ref[ha.LSR], ref.ref[ha.LWR])
                 if ( actuator.id == 8):              
                     lf2List.append(dyn2rad(actuator.current_position));             
                     lf2List.pop(0);
                     lf2 = np.mean(lf2List);                              
-                    ref.ref[ha.RF2] = lf2 - 470;
-                    print "RF2 value = %f" %(ref.ref[ha.RF2])
+                    ref.ref[ha.LF2] = lf2 - 470;
+                    print "LF2 value = %f" %(ref.ref[ha.LF2])'''
+                #right arm
+                '''if ( actuator.id == 11):   
+                    s0List_r.append(dyn2rad(actuator.current_position));             
+                    s0List_r.pop(0);
+                    s0_r = np.mean(s0List_r);
+                    ref.ref[ha.RSY] = s0_r;'''                    
+                if ( actuator.id == 12):     
+                    s1List_r.append(dyn2rad(actuator.current_position));             
+                    s1List_r.pop(0);
+                    s1_r = np.mean(s1List_r);                       
+                    ref.ref[ha.RSP] = s1_r;
+                if ( actuator.id == 13): 
+                    e0List_r.append(dyn2rad(actuator.current_position));             
+                    e0List_r.pop(0);
+                    e0_r = np.mean(e0List_r);                       
+                    ref.ref[ha.RSR] = e0_r;                           
+                if ( actuator.id == 14):   
+                    e1List_r.append(dyn2rad(actuator.current_position));             
+                    e1List_r.pop(0);
+                    e1_r = np.mean(e1List_r);                        
+                    ref.ref[ha.REB] = e1_r - 3.14; #offset of 3.14
+                if ( actuator.id == 15):   
+                    w0List_r.append(dyn2rad(actuator.current_position));             
+                    w0List_r.pop(0);
+                    w0_r = np.mean(w0List_r);                         
+                    ref.ref[ha.RHY] = w0_r;
+                if ( actuator.id == 16):      
+                    w1List_r.append(dyn2rad(actuator.current_position));             
+                    w1List_r.pop(0);
+                    w1_r = np.mean(w1List_r);                    
+                    ref.ref[ha.RHP] = w1_r;      
+                '''if ( actuator.id == 17):                
+                    w2List_r.append(dyn2rad(actuator.current_position));             
+                    w2List_r.pop(0);
+                    w2_r = np.mean(w2List_r);  
+                    ref.ref[ha.RWR] = w2_r;                
+                    #for debugging: print "[ID] radian value = %f" %dyn2rad(actuator.current_position) 
+                    print "RSY, RSP, RSR, RWR values = %f %f %f %f" %(ref.ref[ha.RSY], ref.ref[ha.RSP], ref.ref[ha.RSR], ref.ref[ha.RWR])
+                if ( actuator.id == 18):              
+                    rf2List.append(dyn2rad(actuator.current_position));             
+                    rf2List.pop(0);
+                    rf2 = np.mean(rf2List);                              
+                    ref.ref[ha.RF2] = rf2 - 470;
+                    print "RF2 value = %f" %(ref.ref[ha.RF2])'''                                  
                 r.put(ref)
         time.sleep(.02) #200 Hz refresh rate
         if time.time() > timeout:

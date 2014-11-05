@@ -65,7 +65,9 @@ RSP = 0;
 RSR = 0;
 RSY = 0;
 REB = 0;
-
+NK1 = 0;
+NKY = 0
+NK2 = 0
 try:
     while 1:
         try:
@@ -110,6 +112,42 @@ try:
       		    RWP = RWP+0.1;
       		    ref.ref[ha.RWP] = RWP;
       		    r.put(ref)
+            if c == '1': 
+              RF1 = 1;
+              RF2 = 1;              
+              ref.ref[ha.RF1] = RF1;
+              ref.ref[ha.RF2] = RF2;              
+              r.put(ref)       
+            if c == '2': 
+              RF1 = -1;
+              RF2 = -1;              
+              ref.ref[ha.RF1] = RF1;
+              ref.ref[ha.RF2] = RF2;              
+              r.put(ref)      
+            if c == '3': 
+              NK1 = NK1 + 0.1           
+              ref.ref[ha.NK1] = NK1;            
+              r.put(ref)  
+            if c == '4': 
+              NKY = NKY + 0.1           
+              ref.ref[ha.NKY] = NKY;            
+              r.put(ref)    
+            if c == '5': 
+              NK2 = NK2 + 0.1           
+              ref.ref[ha.NK2] = NK2;            
+              r.put(ref)      
+            if c == '6': 
+              NK1 = NK1 - 0.1           
+              ref.ref[ha.NK1] = NK1;            
+              r.put(ref)  
+            if c == '7': 
+              NKY = NKY - 0.1           
+              ref.ref[ha.NKY] = NKY;            
+              r.put(ref)    
+            if c == '8': 
+              NK2 = NK2 - 0.1           
+              ref.ref[ha.NK2] = NK2;            
+              r.put(ref)                                                                                                 
    	    if c == 'q':
     		    break
         except IOError: pass
